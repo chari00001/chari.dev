@@ -30,7 +30,7 @@ const TypingText = ({ text }: { text: string }) => {
 
   return (
     <span
-      className="typing-text text-lg font-mono"
+      className="typing-text text-md font-mono"
       style={{ fontFamily: 'monospace' }}
     >
       {displayedText}
@@ -318,7 +318,7 @@ const Hero = () => {
                 }
               }}
               transition={{ duration: 0.8 }}
-              className="glass-morphism p-8 sm:p-12 mb-8 relative group transform-style-3d"
+              className="glass-morphism p-4 sm:p-8 md:p-12 mb-8 relative group transform-style-3d mt-20 sm:mt-0"
               onHoverStart={() => setIsHovered(true)}
               onHoverEnd={handleMouseLeave}
               style={{
@@ -339,108 +339,98 @@ const Hero = () => {
               />
               
               <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-accent text-lg sm:text-xl mb-4 uppercase tracking-wider font-medium"
-                style={{
-                  transform: isHovered
-                    ? `translateZ(75px) translate(${calculateParallax(30).x}px, ${calculateParallax(30).y}px)`
-                    : "none",
-                  transition: "transform 0.2s ease-out"
-                }}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="text-light/60 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 tracking-wider font-light"
               >
                 Merhaba, ben
               </motion.p>
               
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="relative"
-                style={{
-                  transform: isHovered
-                    ? `translateZ(100px) translate(${calculateParallax(20).x}px, ${calculateParallax(20).y}px)`
-                    : "none",
-                  transition: "transform 0.2s ease-out"
-                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
+                className="relative mb-6 sm:mb-8"
               >
-                <h1 className="text-6xl sm:text-8xl font-bold mb-4 relative z-10">
-                  <motion.span 
-                    className="text-light inline-block"
-                    whileHover={{ 
-                      color: '#D72323',
-                      textShadow: "0 0 15px rgba(215, 35, 35, 0.5)"
-                    }}
-                  >
-                    Berk{" "}
-                  </motion.span>
-                  <motion.span 
-                    className="text-gradient bg-gradient-to-r from-accent via-light to-accent bg-clip-text inline-block"
-                    whileHover={{
-                      backgroundImage: "linear-gradient(to right, #D72323, #FFFFFF, #D72323, #FFFFFF)",
-                      backgroundSize: "200% 100%",
-                      textShadow: "0 0 15px rgba(215, 35, 35, 0.5)"
-                    }}
-                    animate={{
-                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                    }}
-                    transition={{
-                      duration: 5,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  >
-                    Çağrı{" "}
-                  </motion.span>
-                  <motion.span 
-                    className="text-light inline-block"
-                    whileHover={{ 
-                      color: '#D72323',
-                      textShadow: "0 0 15px rgba(215, 35, 35, 0.5)"
-                    }}
-                  >
-                    Laçin
-                  </motion.span>
+                <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold relative z-10 flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-4 font-mono">
+                  <motion.div className="flex items-center space-x-4">
+                    {/* Berk */}
+                    <motion.span
+                      className="relative inline-block"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                      <span className="relative text-light z-10 transition-colors duration-300 hover:text-accent [text-shadow:0_0_10px_rgba(255,255,255,0.3),0_0_20px_rgba(255,255,255,0.2),0_0_30px_rgba(215,35,35,0.4)]">
+                        Berk
+                      </span>
+                      <motion.span
+                        className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent shadow-[0_0_10px_rgba(215,35,35,0.7)]"
+                        initial={{ width: "0%" }}
+                        whileHover={{ width: "100%" }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </motion.span>
+
+                    {/* Çağrı */}
+                    <motion.span
+                      className="relative inline-block"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                    >
+                      <span className="relative text-accent z-10 [text-shadow:0_0_10px_rgba(215,35,35,0.5),0_0_20px_rgba(215,35,35,0.3),0_0_30px_rgba(215,35,35,0.2)]">
+                        Çağrı
+                      </span>
+                      <motion.div
+                        className="absolute -inset-2 bg-accent/5 rounded-lg -z-10 shadow-[0_0_30px_rgba(215,35,35,0.2)]"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        whileHover={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </motion.span>
+
+                    {/* Laçin */}
+                    <motion.span
+                      className="relative inline-block"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                    >
+                      <span className="relative text-light z-10 transition-colors duration-300 hover:text-accent [text-shadow:0_0_10px_rgba(255,255,255,0.3),0_0_20px_rgba(255,255,255,0.2),0_0_30px_rgba(215,35,35,0.4)]">
+                        Laçin
+                      </span>
+                      <motion.span
+                        className="absolute -bottom-2 left-0 w-0 h-0.5 bg-accent shadow-[0_0_10px_rgba(215,35,35,0.7)]"
+                        initial={{ width: "0%" }}
+                        whileHover={{ width: "100%" }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </motion.span>
+                  </motion.div>
                 </h1>
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-accent/20 to-light/20 blur-3xl -z-10"
-                  animate={{
-                    opacity: [0.5, 0.8, 0.5],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
               </motion.div>
-              
-              <motion.h2
+
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="text-4xl sm:text-5xl font-bold mb-8 text-light/80"
-                whileHover={{
-                  textShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
-                  color: "rgba(255, 255, 255, 0.9)"
-                }}
-                style={{
-                  transform: isHovered
-                    ? `translateZ(75px) translate(${calculateParallax(25).x}px, ${calculateParallax(25).y}px)`
-                    : "none",
-                  transition: "transform 0.2s ease-out"
-                }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="relative inline-block"
               >
-                Yazılım Geliştirici
-              </motion.h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-light/80 relative z-10 font-mono">
+                  <span className="relative inline-block group [text-shadow:0_0_10px_rgba(255,255,255,0.2),0_0_20px_rgba(215,35,35,0.3)]">
+                    Yazılım Geliştirici
+                    
+                  </span>
+                </h2>
+              </motion.div>
               
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="mb-12 relative"
+                className="my-8 sm:mb-12 relative text-sm sm:text-base md:text-lg"
                 style={{
                   transform: isHovered
                     ? `translateZ(50px) translate(${calculateParallax(40).x}px, ${calculateParallax(40).y}px)`
@@ -449,7 +439,7 @@ const Hero = () => {
                 }}
               >
                 <TypingText 
-                  text="Karadeniz Teknik Üniversitesi'nde Bilgisayar Mühendisliği son sınıf öğrencisiyim. ID Language Academy'de Fullstack Developer olarak çalışıyorum ve etkili yazılım çözümleri geliştirmeye tutkuyla bağlıyım." 
+                  text="Karadeniz Teknik Üniversitesi'nde Bilgisayar Mühendisliği son sınıf öğrencisiyim. Yaklaşık 4 yıldır web geliştirme üzerine çalışıyorum ve aynı zamanda ID Language Academy'de Software Developer olarak çalışıyorum. Kariyerime devam ederken yeni projeler geliştirmeye ve yeni teknolojiler öğrenmeye devam ediyorum." 
                 />
               </motion.div>
               
@@ -457,7 +447,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
-                className="flex flex-col sm:flex-row gap-6"
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6"
                 style={{
                   transform: isHovered
                     ? `translateZ(60px) translate(${calculateParallax(35).x}px, ${calculateParallax(35).y}px)`

@@ -44,7 +44,7 @@ const Contact = () => {
       id: 'linkedin',
       label: 'LinkedIn',
       icon: <Linkedin className="w-6 h-6" />,
-      link: 'https://linkedin.com/in/berk-çağrı-laçin',
+      link: 'https://www.linkedin.com/in/berkcagrilacin/',
       color: '#0A66C2'
     }
   ]
