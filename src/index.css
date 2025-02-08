@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    @apply bg-dark w-full min-h-screen overflow-x-hidden;
+  }
+  
+  body {
+    @apply text-light;
+  }
+
+  #root {
+    @apply flex flex-col min-h-screen w-full;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-1;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-accent/50 hover:bg-accent transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply text-5xl sm:text-6xl font-bold mb-12 text-light relative;
+  }
+
+  .section-title::before {
+    content: '';
+    @apply absolute -left-4 -top-4 w-12 h-12 bg-accent/10 rounded-lg -z-10;
+  }
+
+  .section-title::after {
+    content: '';
+    @apply absolute -bottom-4 left-8 w-32 h-1 bg-accent;
+  }
+  
+  .nav-link {
+    @apply cursor-pointer text-light/70 hover:text-accent transition-all duration-300 
+    relative text-sm uppercase tracking-wider font-medium;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 w-0 h-0.5 bg-accent transition-all duration-300 opacity-0;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full opacity-100;
+  }
+  
+  .btn-primary {
+    @apply px-8 py-4 text-accent rounded-lg relative overflow-hidden
+    uppercase tracking-wider text-sm font-medium transition-all duration-500
+    hover:text-light border border-accent/20 hover:border-accent;
+  }
+
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-accent/80 to-accent 
+    translate-x-[110%] transition-transform duration-500 ease-out;
+  }
+
+  .btn-primary:hover::before {
+    @apply translate-x-0 -z-10;
+  }
+
+  .glass-card {
+    @apply bg-darkGray/10 backdrop-blur-sm border border-light/5 
+    rounded-xl transition-all duration-500 p-8
+    hover:bg-darkGray/20 hover:border-accent/20 hover:scale-[1.02]
+    hover:shadow-2xl hover:shadow-accent/5;
+  }
+
+  .glass-morphism {
+    @apply bg-gradient-to-br from-light/5 to-light/[0.02] backdrop-blur-md
+    border border-light/10 rounded-2xl shadow-xl;
+  }
+
+  .text-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-accent to-light;
+  }
+
+  .hover-translate {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/10;
+  }
+
+  .grid-pattern {
+    background-image: 
+      linear-gradient(to right, #D7232333 1px, transparent 1px),
+      linear-gradient(to bottom, #D7232333 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .perspective-[1000px] {
+    perspective: 1000px;
+  }
+
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}
