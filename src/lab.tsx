@@ -83,7 +83,10 @@ const CodeBlock = ({
 }
 
 const Lab = () => {
-  const sampleCode = `import java.util.*;
+  const sampleCode = `
+	// https://drive.google.com/drive/folders/149VzPCzcxoyIJonclE5DWfr3YbL9AdAr?usp=sharing 
+	
+	import java.util.*;
 
 class Resource {
 	private int numResources;
