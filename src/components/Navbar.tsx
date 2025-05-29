@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-scroll'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
@@ -10,6 +11,8 @@ interface NavbarProps {
 
 const Navbar = ({ isMenuOpen, setIsMenuOpen }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false)
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
 
   const navItems = [
     { name: 'Hakkımda', to: 'about' },
@@ -43,18 +46,27 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }: NavbarProps) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link 
-              to="hero" 
-              smooth={true} 
-              className="text-2xl font-bold text-accent cursor-pointer"
-            >
-              BCL
-            </Link>
+            {isHomePage ? (
+              <Link 
+                to="hero" 
+                smooth={true} 
+                className="text-2xl font-bold text-accent cursor-pointer"
+              >
+                BCL
+              </Link>
+            ) : (
+              <RouterLink 
+                to="/" 
+                className="text-2xl font-bold text-accent cursor-pointer"
+              >
+                BCL
+              </RouterLink>
+            )}
           </motion.div>
           
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item, index) => (
+              {isHomePage && navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
                   initial={{ opacity: 0, y: -20 }}
@@ -70,6 +82,19 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }: NavbarProps) => {
                   </Link>
                 </motion.div>
               ))}
+              
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navItems.length * 0.1 }}
+              >
+                <RouterLink
+                  to="/lab"
+                  className={`nav-link ${location.pathname === '/lab' ? 'text-accent' : ''}`}
+                >
+                  Lab
+                </RouterLink>
+              </motion.div>
             </div>
           </div>
           
@@ -99,7 +124,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }: NavbarProps) => {
             className="md:hidden bg-darkGray/90 backdrop-blur-md"
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item, index) => (
+              {isHomePage && navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
                   initial={{ opacity: 0, x: -20 }}
@@ -116,6 +141,20 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }: NavbarProps) => {
                   </Link>
                 </motion.div>
               ))}
+              
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: (navItems.length) * 0.1 }}
+              >
+                <RouterLink
+                  to="/lab"
+                  className={`nav-link block px-3 py-2 ${location.pathname === '/lab' ? 'text-accent' : ''}`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Lab
+                </RouterLink>
+              </motion.div>
             </div>
           </motion.div>
         )}

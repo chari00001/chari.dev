@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -7,9 +8,21 @@ import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Lab from './lab'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const HomePage = () => (
+    <>
+      <Hero />
+      <About />
+      <Experience />
+      <Projects />
+      <Skills />
+      <Contact />
+    </>
+  )
 
   return (
     <div className="min-h-screen w-full bg-dark flex flex-col">
@@ -25,12 +38,11 @@ function App() {
       
       <main className="flex-1 w-full">
         <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/5 via-dark to-dark opacity-70 pointer-events-none" />
-        <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Contact />
+        
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/lab" element={<Lab />} />
+        </Routes>
       </main>
       
       <Footer />
